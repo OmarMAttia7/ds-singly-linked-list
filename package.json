@@ -1,0 +1,18 @@
+{
+  "name": "singly-linked-list",
+  "version": "1.0.0",
+  "description": "An implementation of the Signly Linked List data structure.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Omar M. Attia",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "@types/jest": "^27.5.1",
+    "jest": "^28.1.0",
+    "ts-jest": "^28.0.2",
+    "ts-node": "^10.8.0"
+  }
+}
