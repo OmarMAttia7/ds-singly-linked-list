@@ -62,13 +62,38 @@ class SinglyLinkedList {
         return oldHead.value;
     }
 
-    get(n: number): undefined | ListType {
+    get(n: number): undefined | ListNode {
         if(this.isEmpty || n > this.length - 1 || n < 0) return undefined;
         let targetNode = this.head;
         for(let i = 0; i < n; i++) {
             targetNode = targetNode.next;
         }
-        return targetNode.value;
+        return targetNode;
+    }
+
+    set(value: ListType, n: number): boolean {
+        let targetNode = this.get(n);
+        if(!targetNode) return false;
+        targetNode.value = value;
+        return true;
+    }
+
+    insert(value: ListType, n: number): boolean {
+        if(n > this.length || n < 0) return false;
+        else if(n === this.length) this.push(value);
+        else if(n === 0) this.unshift(value);
+        else {
+            let preNode = this.get(n - 1);
+            let nextNode = preNode.next;
+
+            let targetNode = new ListNode(value);
+
+            preNode.next = targetNode;
+            targetNode.next = nextNode;
+            this.length++;
+        }
+        
+        return true;
     }
 
     get isEmpty(): boolean {
