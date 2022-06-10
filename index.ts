@@ -20,7 +20,7 @@ class SinglyLinkedList {
         return this;
     }
 
-    pop(): ListType {
+    pop(): void | ListType {
         if(!this.head) return;
         let current = this.head;
         let newTail = current;
@@ -31,7 +31,7 @@ class SinglyLinkedList {
         this.tail = newTail;
         this.tail.next = null;
         this.length--;
-        if(this.isEmpty){
+        if(this.length === 0){
             this.head = null;
             this.tail = null;
         }
@@ -40,7 +40,7 @@ class SinglyLinkedList {
 
     unshift(value: ListType): SinglyLinkedList {
         let newNode = new ListNode(value);
-        if(this.isEmpty){
+        if(this.head === null){
             this.head = newNode;
             this.tail = newNode;
         }else{
@@ -51,21 +51,22 @@ class SinglyLinkedList {
         return this;
     }
 
-    shift(): ListType {
-        if(this.isEmpty) return;
+    shift(): void | ListType {
+        if(this.head === null) return;
         let oldHead = this.head;
         this.head = this.head.next;
         this.length--;
-        if(this.isEmpty){
+        if(this.head === null){
             this.tail = null;
         }
         return oldHead.value;
     }
 
     get(n: number): undefined | ListNode {
-        if(this.isEmpty || n > this.length - 1 || n < 0) return undefined;
+        if(this.head === null || n > this.length - 1 || n < 0) return undefined;
         let targetNode = this.head;
         for(let i = 0; i < n; i++) {
+            if(!targetNode.next) break;
             targetNode = targetNode.next;
         }
         return targetNode;
@@ -84,6 +85,7 @@ class SinglyLinkedList {
         else if(n === 0) this.unshift(value);
         else {
             let preNode = this.get(n - 1);
+            if(!preNode) return false;
             let nextNode = preNode.next;
 
             let targetNode = new ListNode(value);
@@ -94,11 +96,6 @@ class SinglyLinkedList {
         }
         
         return true;
-    }
-
-    get isEmpty(): boolean {
-        if(this.length === 0) return true;
-        return false;
     }
 }
 

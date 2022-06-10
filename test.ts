@@ -54,16 +54,16 @@ test('get item values', () => {
     //5, 3, 9, 4
     expect(list.get(-1)).toBe(undefined);
     expect(list.get(5)).toBe(undefined);
-    expect(list.get(0).value).toBe(5);
-    expect(list.get(2).value).toBe(9);
-    expect(list.get(3).value).toBe(4);
+    expect(list.get(0)?.value).toBe(5);
+    expect(list.get(2)?.value).toBe(9);
+    expect(list.get(3)?.value).toBe(4);
 })
 
 test('change item values', () => {
 
     expect(list.set(87, 1)).toBe(true);
 
-    expect(list.get(1).value).toBe(87)
+    expect(list.get(1)?.value).toBe(87)
 
     expect(traverseList(list)).toEqual([5, 87, 9, 4]);
 
