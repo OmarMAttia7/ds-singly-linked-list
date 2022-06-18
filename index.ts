@@ -97,6 +97,22 @@ class SinglyLinkedList {
         
         return true;
     }
+
+    remove(n: number): void | ListType {
+        if(n >= this.length || n < 0) return undefined;
+        if(n === this.length - 1) return this.pop();
+        if(n === 0) return this.shift();
+        let preNode = this.get(n - 1);
+        if(!preNode) return;
+        let targetNode = preNode.next;
+        if(!targetNode) return;
+        let newNext = targetNode.next;
+
+        preNode.next = newNext;
+
+        this.length--;
+        return targetNode.value;
+    }
 }
 
 function traverseList(list: SinglyLinkedList): number[] {

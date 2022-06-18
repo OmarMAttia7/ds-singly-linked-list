@@ -59,7 +59,7 @@ test('get item values', () => {
     expect(list.get(3)?.value).toBe(4);
 })
 
-test('change item values', () => {
+test('set item values', () => {
 
     expect(list.set(87, 1)).toBe(true);
 
@@ -69,7 +69,24 @@ test('change item values', () => {
 
 });
 
-test('Insert items at specefied indexes', () => {
+test('insert items at specefied indexes', () => {
     expect(list.insert(5, -1)).toBe(false);
     expect(list.insert(5, list.length + 1)).toBe(false);
+    //[5, 87, 9, 4]
+    expect(list.insert(90, 2)).toBe(true);
+    expect(traverseList(list)).toEqual([5, 87, 90, 9, 4]);
+    expect(list.insert(14, list.length)).toBe(true);
+    expect(traverseList(list)).toEqual([5, 87, 90, 9, 4, 14]);
+});
+
+test('remove items', () => {
+    //[5, 87, 90, 9, 4, 14]
+    expect(list.remove(1)).toEqual(87);
+    expect(traverseList(list)).toEqual([5, 90, 9, 4, 14]);
+    
+    expect(list.remove(5)).toBeUndefined();
+    expect(list.remove(-1)).toBeUndefined();
+
+    expect(list.remove(list.length - 1)).toEqual(14);
+    expect(traverseList(list)).toEqual([5, 90, 9, 4]);
 });
