@@ -90,3 +90,12 @@ test('remove items', () => {
     expect(list.remove(list.length - 1)).toEqual(14);
     expect(traverseList(list)).toEqual([5, 90, 9, 4]);
 });
+
+test('reverse list', () => {
+    // [5, 90, 9, 4]
+    list.push(8);
+    list.push(34);
+    // [5, 90, 9, 4, 8, 34]
+    expect(traverseList(list.reverse())).toEqual([34, 8, 4, 9, 90, 5]);
+    expect(traverseList(list.reverse())).toEqual([5, 90, 9, 4, 8, 34]);
+});

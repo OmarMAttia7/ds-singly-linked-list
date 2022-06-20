@@ -113,6 +113,30 @@ class SinglyLinkedList {
         this.length--;
         return targetNode.value;
     }
+
+    reverse(): SinglyLinkedList {
+        let temp = this.head;
+        this.head = this.tail;
+        this.tail = temp;
+
+        let nextNode: ListNode | null | undefined, preNode: ListNode | null = null;
+
+        let currentNode = temp;
+
+        for(let i = 0; i < this.length; i++) {
+            if(currentNode?.next || currentNode?.next === null) {
+                nextNode = currentNode.next
+
+                currentNode.next = preNode;
+
+                preNode = currentNode;
+                
+                currentNode = nextNode;
+            }
+        }
+
+        return this;
+    }
 }
 
 function traverseList(list: SinglyLinkedList): number[] {
